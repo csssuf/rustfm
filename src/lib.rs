@@ -25,7 +25,7 @@ pub mod user;
 type HTTPResult = hyper::error::Result<hyper::client::response::Response>;
 
 /// Generic LastFM object.
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 pub struct RawData {
     #[serde(rename = "#text")]
     pub text: String

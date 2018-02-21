@@ -6,13 +6,13 @@ use user::User;
 use error::{LastFMError, Error};
 
 /// http://www.last.fm/api/show/user.getRecentTracks
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct RecentTracks {
     #[serde(rename = "track")]
     pub tracks: Vec<Track>
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct Track {
     pub artist: RawData,
     pub name:   String,
