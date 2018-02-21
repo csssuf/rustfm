@@ -1,3 +1,5 @@
+use std::fmt::{Display, Formatter};
+
 use serde_json;
 use hyper;
 
@@ -12,6 +14,12 @@ pub enum Error {
 
     /// An error returned by the APIs
     LastFMError(LastFMErrorResponse)
+}
+
+impl Display for Error {
+    fn fmt(&self, f: &mut Formatter) -> ::std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 /// Representation of all the LastFM APIs errors
