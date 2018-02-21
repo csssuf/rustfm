@@ -22,6 +22,12 @@ impl Display for Error {
     }
 }
 
+impl From<Error> for String {
+    fn from(e: Error) -> String {
+        format!("{:?}", e)
+    }
+}
+
 /// Representation of all the LastFM APIs errors
 #[derive(Debug)]
 pub enum LastFMErrorResponse {
