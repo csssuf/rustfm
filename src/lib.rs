@@ -6,6 +6,7 @@ extern crate url;
 
 use std::fmt;
 use std::marker::PhantomData;
+use std::time::Duration;
 use url::Url;
 use hyper::client::Client as HTTPClient;
 
@@ -56,9 +57,12 @@ pub struct Client {
 
 impl Client {
     pub fn new(api_key: &str) -> Client {
+        let mut http_client = HTTPClient::new();
+        http_client.set_read_timeout(Some(Duration::from_secs(2)));
+        http_client.set_write_timeout(Some(Duration::from_secs(2)));
         Client {
-            api_key:     api_key.to_owned(),
-            http_client: HTTPClient::new()
+            api_key: api_key.to_owned(),
+            http_client,
         }
     }
 
